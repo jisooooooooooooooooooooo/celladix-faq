@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celladix Creator FAQ</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap');
+
+:root { --primary: #111111; --bg: #f5f5f5; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  font-family: 'Jost', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px 60px;
+  transition: background 0.4s;
+}
+
+.card {
+  background: #fff;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.1);
+}
+
+/* ── Shared Header ── */
+.header {
+  background: var(--primary);
+  padding: 36px 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+.deco1 { position:absolute; right:-40px; top:-40px; width:200px; height:200px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); pointer-events:none; }
+.deco2 { position:absolute; right:30px; bottom:-80px; width:280px; height:280px; border-radius:50%; border:1px solid rgba(255,255,255,0.07); pointer-events:none; }
+
+.choco-chip { position:absolute; border-radius:50%; background:rgba(62,31,8,0.5); opacity:0; transition:opacity 0.5s; pointer-events:none; }
+
+.logo { display:block; margin-bottom:22px; }
+.logo img { height:32px; width:auto; display:block; }
+.header-label { font-size:10px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:8px; }
+.header h1 { font-family:'Cormorant',serif; font-size:32px; font-weight:400; color:#fff; line-height:1.2; margin-bottom:10px; }
+.header h1 em { font-style:italic; font-weight:300; color:rgba(255,255,255,0.72); }
+.header-desc { font-size:13px; color:rgba(255,255,255,0.6); font-weight:300; line-height:1.75; }
+
+/* ── SCREEN: Selector ── */
+.screen { display:none; }
+.screen.active { display:block; }
+
+.selector-body { padding: 28px 28px 32px; }
+.selector-label { font-size:11px; font-weight:400; letter-spacing:0.16em; text-transform:uppercase; color:#bbb; margin-bottom:16px; }
+
+.campaign-cards { display:flex; flex-direction:column; gap:10px; }
+
+.campaign-card {
+  border: 1.5px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 18px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  background: #fff;
+}
+.campaign-card:hover { border-color: var(--card-color); background: var(--card-bg); transform: translateX(3px); }
+
+.card-emoji { font-size: 26px; flex-shrink: 0; line-height: 1; }
+.card-info { flex: 1; }
+.card-name { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; letter-spacing: 0.01em; }
+.card-sub { font-size: 12px; color: #999; font-weight: 300; }
+.card-arrow { flex-shrink:0; width:28px; height:28px; border-radius:50%; background:var(--card-color); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.2s; }
+.card-arrow svg { width:12px; height:12px; stroke:#fff; fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+.campaign-card:hover .card-arrow { opacity:1; }
+
+/* ── SCREEN: FAQ ── */
+.campaign-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 14px;
+}
+
+.reward-banner {
+  background: rgba(255,255,255,0.13);
+  border-radius: 8px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.reward-amount { font-family:'Cormorant',serif; font-size:30px; font-weight:400; color:#fff; line-height:1; flex-shrink:0; }
+.reward-desc { font-size:12px; color:rgba(255,255,255,0.68); font-weight:300; line-height:1.65; }
+.reward-desc strong { color:#fff; font-weight:500; }
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: #fff;
+  border: none;
+  border-bottom: 2px solid #f0f0f0;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-family: 'Jost', sans-serif;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s, color 0.2s;
+}
+.back-btn:hover { background: #fafafa; }
+.back-btn svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ── Tabs ── */
+.tabs { display:flex; flex-wrap:wrap; gap:8px; padding:14px 20px; background:#fff; border-bottom:1px solid #f0f0f0; }
+.tab { display:flex; align-items:center; gap:6px; padding:7px 14px; border-radius:20px; border:1.5px solid #e8e8e8; background:#fff; font-size:11px; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; color:#aaa; cursor:pointer; font-family:'Jost',sans-serif; white-space:nowrap; transition:all 0.2s; }
+.tab svg { width:12px; height:12px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+.tab:hover { color:#555; border-color:#ccc; }
+.tab.active { color:#fff; background:var(--primary); border-color:var(--primary); font-weight:500; }
+
+/* ── Panels ── */
+.panel { display:none; }
+.panel.active { display:block; }
+.faq-item { border-bottom:1px solid #f5f5f5; }
+.faq-item:last-child { border-bottom:none; }
+.faq-item.hidden { display:none; }
+
+.faq-q { width:100%; text-align:left; padding:16px 28px; font-size:13.5px; font-weight:400; letter-spacing:0.02em; color:#1a1a1a; background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:14px; font-family:'Jost',sans-serif; transition:background 0.15s; line-height:1.4; }
+.faq-q:hover { background:#fafafa; }
+.faq-q.open { background:#fafafa; }
+
+.q-icon { flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#f5f5f5; display:flex; align-items:center; justify-content:center; transition:background 0.2s; }
+.q-icon svg { width:15px; height:15px; stroke:#999; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; transition:stroke 0.2s; }
+.faq-q.open .q-icon { background:var(--primary); }
+.faq-q.open .q-icon svg { stroke:#fff; }
+.q-text { flex:1; }
+
+.toggle-icon { flex-shrink:0; width:16px; height:16px; position:relative; }
+.toggle-icon::before, .toggle-icon::after { content:''; position:absolute; background:#ccc; border-radius:2px; transition:all 0.25s ease; }
+.toggle-icon::before { width:10px; height:1px; top:50%; left:50%; transform:translate(-50%,-50%); }
+.toggle-icon::after  { width:1px; height:10px; top:50%; left:50%; transform:translate(-50%,-50%); }
+.faq-q.open .toggle-icon::after  { transform:translate(-50%,-50%) rotate(90deg); opacity:0; }
+.faq-q.open .toggle-icon::before { background:#999; }
+
+.faq-a { display:none; padding:4px 28px 22px 76px; font-size:13px; color:#666; line-height:1.85; font-weight:300; letter-spacing:0.015em; }
+.faq-a.open { display:block; }
+.faq-a strong { color:#1a1a1a; font-weight:500; }
+.faq-a a { color:var(--primary); font-weight:500; text-decoration:none; }
+.faq-a a:hover { text-decoration:underline; }
+
+.steps { margin-top:10px; display:flex; flex-direction:column; gap:10px; }
+.step { display:flex; gap:12px; align-items:flex-start; }
+.step-num { flex-shrink:0; width:22px; height:22px; border-radius:50%; background:var(--primary); color:#fff; font-size:10px; font-weight:500; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+.step-txt { font-size:12.5px; color:#555; line-height:1.65; padding-top:2px; }
+
+.dot-list { margin-top:10px; display:flex; flex-direction:column; gap:7px; }
+.dot-list li { display:flex; gap:10px; align-items:flex-start; font-size:12.5px; color:#555; list-style:none; }
+.dot-list li svg { width:10px; height:10px; stroke:#bbb; fill:none; stroke-width:2; stroke-linecap:round; margin-top:4px; flex-shrink:0; }
+
+.highlight { margin-top:12px; padding:12px 14px; background:#fafafa; border-left:2px solid var(--primary); border-radius:0 3px 3px 0; font-size:12px; color:#555; line-height:1.7; display:flex; gap:9px; align-items:flex-start; }
+.highlight svg { width:14px; height:14px; stroke:var(--primary); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; margin-top:2px; }
+
+.chip { display:inline-flex; align-items:center; gap:5px; padding:4px 10px; border-radius:20px; background:#f5f5f5; font-size:11px; color:#888; font-weight:400; margin-bottom:8px; }
+.chip svg { width:11px; height:11px; stroke:#aaa; fill:none; stroke-width:2; stroke-linecap:round; }
+
+.guide-card { background:#fafafa; border-radius:6px; padding:13px 15px; margin-bottom:8px; border-left:2px solid var(--primary); }
+.guide-num { font-size:10px; font-weight:500; color:var(--primary); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+.guide-card p { font-size:12.5px; color:#555; line-height:1.6; }
+
+/* ── Review Event Flow ── */
+.review-flow { padding: 20px 24px 24px; }
+.review-section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #bbb; margin-bottom: 14px; }
+.review-steps { display: flex; flex-direction: column; }
+.review-step { display: flex; align-items: flex-start; gap: 14px; }
+.review-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.review-icon svg { width: 18px; height: 18px; }
+.review-step-body { padding-top: 8px; flex: 1; }
+.review-step-title { font-size: 13.5px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
+.review-step-desc { font-size: 12.5px; color: #777; line-height: 1.7; font-weight: 300; }
+.review-connector { width: 40px; height: 20px; display: flex; justify-content: center; flex-shrink: 0; }
+.review-connector::before { content: ''; width: 1.5px; background: #eee; display: block; }
+
+.product-links { display: flex; flex-direction: column; gap: 8px; }
+.product-link { display: flex; align-items: center; gap: 12px; padding: 13px 16px; background: #fafafa; border: 1.5px solid #f0f0f0; border-radius: 8px; text-decoration: none; transition: border-color 0.2s, background 0.15s; }
+.product-link:hover { border-color: var(--primary); background: #fff; }
+.product-link-emoji { font-size: 20px; flex-shrink: 0; }
+.product-link-name { font-size: 13px; font-weight: 400; color: #1a1a1a; flex: 1; }
+
+/* ── Apply Banner ── */
+.apply-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 18px 0 4px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 10px;
+  border: 1px solid rgba(99,102,241,0.25);
+}
+.apply-banner-text { display: flex; flex-direction: column; gap: 3px; }
+.apply-banner-title { font-size: 13px; font-weight: 500; color: #fff; letter-spacing: 0.01em; }
+.apply-banner-sub { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 300; }
+.apply-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(99,102,241,0.4);
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.apply-btn:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(99,102,241,0.55); }
+
+/* ── Footer ── */
+.footer { padding:18px 28px 24px; border-top:1px solid #f5f5f5; background:#fafafa; display:flex; align-items:center; gap:14px; }
+.footer-icon { width:36px; height:36px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.footer-icon svg { width:15px; height:15px; stroke:#fff; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.footer p { font-size:12px; color:#999; font-weight:300; line-height:1.6; }
+.footer p strong { color:#444; font-weight:500; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- Shared Header -->
+  <div class="header" id="mainHeader">
+    <div class="deco1"></div>
+    <div class="deco2"></div>
+    <div class="choco-chip" style="width:28px;height:16px;top:18px;left:155px;transform:rotate(-18deg)"></div>
+    <div class="choco-chip" style="width:22px;height:13px;top:48px;left:240px;transform:rotate(14deg)"></div>
+    <div class="choco-chip" style="width:32px;height:18px;top:28px;right:65px;transform:rotate(-9deg)"></div>
+    <div class="choco-chip" style="width:18px;height:11px;bottom:22px;left:100px;transform:rotate(24deg)"></div>
+    <div class="choco-chip" style="width:24px;height:14px;bottom:14px;right:120px;transform:rotate(-16deg)"></div>
+    <div class="choco-chip" style="width:16px;height:10px;top:14px;right:180px;transform:rotate(7deg)"></div>
+    <div class="choco-chip" style="width:20px;height:12px;top:62px;left:80px;transform:rotate(-22deg)"></div>
+    <div class="choco-chip" style="width:26px;height:15px;bottom:32px;right:55px;transform:rotate(19deg)"></div>
+    <div class="choco-chip" style="width:14px;height:9px;top:38px;left:310px;transform:rotate(-5deg)"></div>
+    <div class="choco-chip" style="width:19px;height:11px;bottom:18px;left:200px;transform:rotate(11deg)"></div>
+
+    <div class="logo"><img id="logoImg" src="" alt="Celladix"></div>
+
+    <!-- Selector header content -->
+    <div id="header-selector">
+      <div class="header-label">Creator Support</div>
+      <h1>Which campaign<br><em>are you in?</em></h1>
+      <p class="header-desc" style="margin-top:8px">Select your campaign below to see the right FAQ for you.</p>
+    </div>
+
+    <!-- FAQ header content -->
+    <div id="header-faq" style="display:none">
+      <div class="campaign-badge" id="campaignBadge"></div>
+      <div class="header-label">Creator Support</div>
+      <h1 id="headerTitle"></h1>
+      <p class="header-desc" id="headerDesc" style="margin-top:8px"></p>
+      <p class="header-desc" style="margin-top:10px;color:rgba(255,255,255,0.45)">Browse by topic below. Can't find what you need? Simply reply to this email.</p>
+    </div>
+  </div>
+
+  <!-- SCREEN: Campaign Selector -->
+  <div class="screen active" id="screen-selector">
+    <div class="selector-body">
+      <div class="selector-label">Select your campaign</div>
+      <div class="campaign-cards">
+
+        <div class="campaign-card" style="--card-color:#C8102E;--card-bg:#fff5f5" onclick="selectCampaign('red-solo')">
+          <div class="card-emoji">🔴</div>
+          <div class="card-info">
+            <div class="card-name">Red Retinol Wash Peel</div>
+            <div class="card-sub">Single product · 1 video</div>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+
+        <div class="campaign-card" style="--card-color:#C8102E;--card-bg:#fff5f5" onclick="selectCampaign('red-bundle')">
+          <div class="card-emoji">🔴🧴</div>
+          <div class="card-info">
+            <div class="card-name">Red Retinol + Cream Bundle</div>
+            <div class="card-sub">Bundle · Talking Content · 1 video</div>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+
+        <div class="campaign-card" style="--card-color:#C8102E;--card-bg:#fff5f5" onclick="selectCampaign('red-challenge')">
+          <div class="card-emoji">🏆</div>
+          <div class="card-info">
+            <div class="card-name">$600 Challenge</div>
+            <div class="card-sub">Up to 30 videos · $20 per video</div>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+
+        <div class="campaign-card" style="--card-color:#3DBFB8;--card-bg:#f0fdfb" onclick="selectCampaign('mint-choco')">
+          <div class="card-emoji">🌿🍫</div>
+          <div class="card-info">
+            <div class="card-name">Mint Choco Cleanser</div>
+            <div class="card-sub">New product · 1 video</div>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+
+        <div class="campaign-card" style="--card-color:#F59E0B;--card-bg:#fffbeb" onclick="selectCampaign('review-event')">
+          <div class="card-emoji">⭐</div>
+          <div class="card-info">
+            <div class="card-name">Review Event</div>
+            <div class="card-sub">Purchase & review · $40 per product</div>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+
+      </div>
+
+      <!-- Apply Banner -->
+      <div class="apply-banner">
+        <div class="apply-banner-text">
+          <span class="apply-banner-title">Interested in joining another campaign?</span>
+          <span class="apply-banner-sub">Let us know — we'd love to work with you.</span>
+        </div>
+        <a href="https://forms.gle/wF3me68RWeq1aqgh9" target="_blank" class="apply-btn">
+          Apply Now
+          <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCREEN: FAQ -->
+  <div class="screen" id="screen-faq">
+
+    <button class="back-btn" onclick="goBack()">
+      <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to campaigns
+    </button>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('campaign',this)">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Campaign
+      </button>
+      <button class="tab" onclick="switchTab('deliverables',this)">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Deliverables
+      </button>
+      <button class="tab" onclick="switchTab('shipping',this)">
+        <svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>Shipping
+      </button>
+      <button class="tab" onclick="switchTab('payment',this)">
+        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Payment
+      </button>
+      <button class="tab" onclick="switchTab('others',this)">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Others
+      </button>
+    </div>
+
+    <!-- CAMPAIGN -->
+    <div class="panel active" id="panel-campaign">
+      <div class="faq-item" id="faq-paid-collab">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+          <span class="q-text">Is this a paid collaboration?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">
+          <div class="chip"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Yes, fully paid</div><br>
+          This is a <strong>fully paid collaboration</strong>. For details on your specific compensation, please check your invitation email.
+        </div>
+      </div>
+      <div class="faq-item hidden" id="faq-review-event">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
+          <span class="q-text">What is a Review Event?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">A Review Event is where you <strong>purchase on TikTok Shop</strong> and leave a review. Once verified, we send one payment covering both reimbursement and your incentive fee.</div>
+      </div>
+      <div class="faq-item hidden" id="faq-review-event-how">
+        <!-- Review Event: Full visual flow, no tabs needed -->
+        <div class="review-flow">
+
+          <!-- How it works -->
+          <div class="review-section-label">How it works</div>
+          <div class="review-steps">
+
+            <div class="review-step">
+              <div class="review-icon" style="background:#fff0e6;color:#e07820">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              </div>
+              <div class="review-step-body">
+                <div class="review-step-title">Purchase on TikTok Shop</div>
+                <div class="review-step-desc">Buy the product through the TikTok Shop link using your own account. Links for each product are listed below.</div>
+              </div>
+            </div>
+
+            <div class="review-connector"></div>
+
+            <div class="review-step">
+              <div class="review-icon" style="background:#fff8e1;color:#c9960a">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <div class="review-step-body">
+                <div class="review-step-title">Leave a 5-star review</div>
+                <div class="review-step-desc">Rate ⭐⭐⭐⭐⭐ and include product-relevant keywords in your review text. We'll share the exact keywords with you.</div>
+              </div>
+            </div>
+
+            <div class="review-connector"></div>
+
+            <div class="review-step">
+              <div class="review-icon" style="background:#e8f5e9;color:#2e7d32">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </div>
+              <div class="review-step-body">
+                <div class="review-step-title">Submit your review screenshot</div>
+                <div class="review-step-desc">Reply to this email with a screenshot of your posted review as proof of submission.</div>
+              </div>
+            </div>
+
+            <div class="review-connector"></div>
+
+            <div class="review-step">
+              <div class="review-icon" style="background:#e8eaf6;color:#3949ab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div class="review-step-body">
+                <div class="review-step-title">Get paid — $40 total</div>
+                <div class="review-step-desc">One payment via Tipalti within <strong>1–2 weeks</strong> covering both the <strong>product cost reimbursement + $40 incentive</strong>.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Product links -->
+          <div class="review-section-label" style="margin-top:24px">Shop by product</div>
+          <p style="font-size:12px;color:#999;font-weight:300;margin-bottom:12px;line-height:1.6">You can find detailed product information — including ingredients and usage — via the links below.</p>
+          <div class="product-links">
+            <a href="TIKTOK_LINK_RED_PEEL" target="_blank" class="product-link">
+              <span class="product-link-emoji">🔴</span>
+              <span class="product-link-name">Red Retinol Wash Peel</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;flex-shrink:0;opacity:0.4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="TIKTOK_LINK_RED_CREAM" target="_blank" class="product-link">
+              <span class="product-link-emoji">🧴</span>
+              <span class="product-link-name">Red Retinol Cream</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;flex-shrink:0;opacity:0.4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="TIKTOK_LINK_MINT" target="_blank" class="product-link">
+              <span class="product-link-emoji">🌿</span>
+              <span class="product-link-name">Mint Choco Cleanser</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;flex-shrink:0;opacity:0.4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <div class="faq-item hidden" id="faq-challenge-info">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+          <span class="q-text">How does the $600 Challenge work?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">
+          You earn <strong>$20 per video</strong>, up to <strong>30 videos</strong> — maximum <strong>$600 total</strong>.<br><br>
+          We provide 3 content guidelines. Use one, mix them, or use all three — entirely up to you.
+          <div style="margin-top:14px">
+            <div class="guide-card"><div class="guide-num">Guideline 01</div><p>To be provided by the Celladix team.</p></div>
+            <div class="guide-card"><div class="guide-num">Guideline 02</div><p>To be provided by the Celladix team.</p></div>
+            <div class="guide-card"><div class="guide-num">Guideline 03</div><p>To be provided by the Celladix team.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item hidden" id="faq-bundle-info">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
+          <span class="q-text">What is a Talking Content video?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">A Talking Content video is a <strong>face-to-camera style review</strong> where you speak directly about your experience. No heavy editing — authenticity is key.</div>
+      </div>
+      <div class="faq-item" id="faq-timeline">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+          <span class="q-text">What's the full campaign timeline?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><span class="step-txt">Accept collaboration &amp; complete onboarding</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-txt">Product ships to you</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-txt">Create content &amp; submit draft for review</span></div>
+            <div class="step"><span class="step-num">4</span><span class="step-txt">We confirm within <strong>2 business days</strong></span></div>
+            <div class="step"><span class="step-num">5</span><span class="step-txt">Upload within <strong>1 week</strong> of receiving the product</span></div>
+            <div class="step"><span class="step-num">6</span><span class="step-txt">Send live link + ad-code → payment processed</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item" id="faq-product-details">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+          <span class="q-text">Where can I find product details?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">View the full product page on TikTok Shop:<br><a href="https://vm.tiktok.com/ZP9NYrmGnuwAM-b8ZbY/" target="_blank">TikTok Shop — Product Page →</a></div>
+      </div>
+    </div>
+
+    <!-- DELIVERABLES -->
+    <div class="panel" id="panel-deliverables">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
+          <span class="q-text">How many videos do I need to create?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a" id="a-video-count">This campaign requires <strong>1 video</strong>.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          <span class="q-text">When is the upload deadline?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">Upload within <strong>one week of receiving the product</strong>. Need more time? Reach out before the deadline.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></span>
+          <span class="q-text">Do I need draft approval before posting?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">
+          <div class="highlight">
+            <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span><strong>Draft approval is required.</strong> Do not publish without our confirmation.</span>
+          </div>
+          <br>Send your draft and we'll review within <strong>2 business days</strong>.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          <span class="q-text">Can I share the content guidelines with others?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">
+          <div class="highlight" style="background:#fff8f0;border-left-color:#c0392b">
+            <svg viewBox="0 0 24 24" style="stroke:#c0392b"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span><strong>Please keep all guidelines strictly confidential.</strong> Do not share, post, or forward any campaign materials to third parties.</span>
+          </div>
+          <br>The content guidelines provided are <strong>for your use only</strong> as part of this collaboration. Sharing them externally — including on social media or with other creators — may result in <strong>disqualification from this and future campaigns</strong>.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></span>
+          <span class="q-text">Where can I find the content guidelines?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">
+          The content guidelines will be sent to you <strong>separately via email</strong> once your participation is confirmed. Please check your inbox — including your spam folder — and reach out if you haven't received them.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg></span>
+          <span class="q-text">How many revisions are allowed?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">We allow up to <strong>3 revisions</strong>. Please make sure your content aligns as closely as possible with the provided guidelines to keep revisions minimal.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+          <span class="q-text">Do I need to submit an ad-code after posting?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">Yes — once your video is live, share the <strong>ad-code via email</strong>. Ad-codes are <strong>valid for 1 month</strong>, so send it promptly.</div>
+      </div>
+    </div>
+
+    <!-- SHIPPING -->
+    <div class="panel" id="panel-shipping">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg></span>
+          <span class="q-text">When will my product arrive?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">Products typically arrive <strong>within 5 business days</strong>. You'll also receive a <strong>separate email with tracking info</strong> once dispatched. If it's taking longer, just reach out.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span>
+          <span class="q-text">Can I get my tracking number?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">Tracking is emailed once shipped. Haven't received it? <strong>Reply to this email</strong> and we'll send it over.</div>
+      </div>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="panel" id="panel-payment">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          <span class="q-text">When will I receive my payment?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">Within <strong>1–2 weeks</strong> after your video goes live and is confirmed. Send us the live link to start.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
+          <span class="q-text">How do I get paid? Is PayPal available?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">
+          All payments go through <strong>Tipalti</strong>:
+          <ul class="dot-list">
+            <li><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>Bank transfer (ACH / wire)</li>
+            <li><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>PayPal</li>
+          </ul>
+          <div class="highlight" style="margin-top:12px">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Complete your Tipalti setup email before going live to avoid delays.</span>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="q-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/><line x1="2" y1="2" x2="22" y2="22"/></svg></span>
+          <span class="q-text">My Tipalti onboarding link has expired — what do I do?</span>
+          <span class="toggle-icon"></span>
+        </button>
+        <div class="faq-a">
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><span class="step-txt"><strong>Refresh the page</strong> — resolves it most of the time.</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-txt">Still broken? <strong>Reply to this email</strong> and we'll send a new Tipalti onboarding link.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OTHERS -->
+    <div class="panel" id="panel-others">
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <p>Still need help? <strong>Reply to this email</strong> and our team will get back to you shortly.</p>
+    </div>
+
+  </div><!-- /screen-faq -->
+
+</div><!-- /card -->
+
+<script>
+var LOGO_B64 = 'iVBORw0KGgoAAAANSUhEUgAAA2YAAAHgCAYAAADOo34SAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAZc0lEQVR4nO3d205kO7IF0ORo//8vcx5KdAGVkDfbMxweQ0LdD7vAd3suL5K39/f3CwAAADn/ly4AAADA6QQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAj7L10AAHjR+4P//duUUgDACwQzAKp5NGgBwPYEMwBmqxS03JYBUJJgBsCjKgUtAGhBMANA0AKAMMEMoCdh619eYwSgLMGMSp45SDpocQpBCwAaE8xYacbB8tb3FNwg7955KHwCcCzBjJkqHLK+l0FQY0cV5tKzHplzb5d5dTX3AShNMGOkHQ6Pgho7+ggso8frDnMWTvbqHB2xZlQoAxzh7f3dvsxLOg0gmwenqnZLNbo85ja7GjEXXh3/FcoAR3BjxrM6BbIPn+tkE+EkM18hBHLsZbARwYxHnHRw+6irTQ0AgOn+L10AtnFSKPvs/XJu3eEVVR5qVCkHAPzKjRm/EUj+coMGAMA0bsz4iVB2nRs0AACGE8z4TvC4jzaCn71yszxybrnhBmAbXmXkg6DxOK83AgAwhBszLheh7FXaj925pQKAMMEMoWIM7Qi1CIgAbMWrjOcSJMbzaiO8xroEwLHcmJ3J4Wcu7cupPJQAgCcJZufZLTS8XfY87O3Wzpyr41jdcc0A4HBeZTxLpQPYowenR/77KvV8vzggwr2qzFsAiBDMzlDhwLMyoHz/Wcn6C2ecoso4r1IOAHiIYMZMVQ5In8uRCGnCGVVVeGgDAFwEsxOsPnhVDyAf5VvdLsIZ/ExABOB4gllvKw87u4WOxC2acEZXxjUAvEgw62tV2OhwIHu7CGecp+MtlbkF45lXsIiPy+9pxYFr14+x/8nK+nQ8EMOzzAcAuLgx62j2IadTGLsm9TtosKsqa0KVcgDAU9yY9SKUjTO7roIfSVXGX5VyAECcYNaHUDbe7NcbHUoBALhcLoIZt3X7XbJnCGdwXZW1oUo5AOBpglkPsw73Djt/aQu6qPIwoEo5AKAEwWx/Qtk6s9rEAZUdWSMAYCDBjGscuH6mbaAWcxKAFgSzvc24aXHIuW1GG7k1Y4Uq46xKOQCgDH/HjM+Esvu9XcYfLt8v+uCz7+2rberQF4+7Z73QrmO9skbrC2A5wWxfo0OBTehxM8LZCZ5ts3v/nbF8XcexWqWvR7Xtre9Tpb4VzXhQ9p32B6YSzPYklPXV8dZsdSBwoKqtQ0BM1cEt8lfJteWktp998+hm8zU/nRvc0m9IMIPXuDW7rlqbnHqgmqFK+60uR7UxfbmcOa6r9MOJbf+Mj3b6qY1e7c9b37+r7+32ypsop7VdaYLZftyW1TM6nO26UFY5MN1y4oFql76pZqd2O2FcV+2PU8PBvbQL3MmnMp7NYjnOqW35/ulrRzuXfUe7tPXu42Lnsl+zS3/sUs7VVrTJSe1+Ul2PI5jtxWQ8xw59vUMZ7+VAdZ8qDyBmlqPLOOgwpnetw45l7uCEdvfWVHOC2blMxvFOadNdD0v36Fi3bvWZpWPfXy771mnXcn/oOp5GO2XfhLsIZvsYucBbCHnGSQeNU+q5UuU2rVy2EXaauzuV9R6d6jLLyDNJ5/Z2W3YAwQzG6rjBdDso3evUev+kyiY+eo6d1MfV61q9fM/qWq+ROu6dIwllhxDM9uC2jJSOG9yjdm6Dncs+26ltU7XeVcs1Svf6sQ/nwMIEMxivy5M/B4m/Tm+LV8d0tfarVp7VqtW/WnlmOaWez+qyd47WqS7cIJidxVMS7nHa61330iZ5I9Yw/fhHlXaoUo5VTqvvo4Szr7zCeBjBrL4OC8uJdl38jLff7dQ+O5V1FW3yVbo90j8/5dR630s4+0MoO5Bgdg4Tcl+rNpadN7CVtNNjqrRXlXLA5WI8spYz4Cb+SxcAGnu77LP5VirnbxtIlXK+X87Z6KrUs0o57vVseVeP8dRYrjKXL5c91pzTjNw/d1yvjbtDCWa1mZiskBhnz26St/7dyrpU3uytHV+taI9RY+Ha95ld/tVjucua82o9Kq8hFZwazrzCeDDB7AwmJT9ZeUBaMQ4//4wVddtps39Gh09jnFmGVX3/8XMqtOdOZvfPiPWm+xryqp3ePKnI2NqM3zGDuUYtijM2plW3CB9fq6362Q4N81V8LTA5pmfo9LusiTUnudZ1V3kfHc3frT2cYNafiUlCtQNKtfLMVOXwUaUco1UYSxXK8IzZY6JKuzxahq5zpaLKbV25bCwimNVlgjLTrPFV5WD0k91vG1aq3I8p1dpkdHl2HccV151Hy7Rr269SrX+r016bEsxgvmoL5MxQtoNZhzgHqzkqvMZY8eD/oWq5vjt13ak8dnbT+ZVGrzByuVwEM9jJiIV7xoa068FjxzLfUuXAkS5H+uevduof5N1pDt9T1p3aPqVjOBPK+B/BrDcTlNl2H2NeBbuuSr9WKEeFMtyjcjlnPRDazY5lrqhjOIPL5SKYwUn8bZTrutSDPzx9fl31A+vO/VLpbzGSZ73iC8GsJgtzP+kFUyj7XYdXwUb93A5/u2yEHcd4xTJbe/7VoQ5pHW7NhDL+IZgBj+q6AXSt1670B991GhOd6pLSIZyNYCw1IphBXW9Xvp7hqdz9bPR7q3JrmFSp7Nae3/1UJ+vH/XYdF/qYqwSzvnZdrE42IoTNVLFM/FElkHQ4bBjnf3Toyx0YbzWsHO8eWPAjwQzWefv2/6sHsVO5Nct7pg+091/d1pNu9WGsU9ds86IhwQzWWh3Cqtyk7Oa0+gI519ab3UJC2i7hzJ7MrwQz6MsGcIYq/dzhIGmsj1NlXO7ilHrOVL0NO6yRTCaY1WPiQg0jNnnz+XHVD1ewivXjcSes29bIxgQz4Dc2AHYw4iDVbax3OKB265NbTqtvZaPHvhtk7iKYQU/pAxVrVNnsjTc+Mx5IqhZezAfuJpgBP6m2uSV0uHXYiTHH6cyBMaqs3T4an4cIZgB7EvjGceCpR5/wqirhbATz4RCCGfTj923G6t4WVV5jfLYcVQ5OMEr3NecU6bWRDQlmAAB0lLo1E8p4imAGsJ8qt0RVykEdbuypptMrjTQnmEEvDkU1Vd3Uq/T1K+V4+/TFV9oE/lgZztyW8TTBDOA2G+Qe3q583fNvoBrjcrwVbSqU8ZL/0gUA4CFVbt+qlOOWawecXcoO1PJ+EZqYyI0ZwJmqHC4S5fD6Y136hJlmvtLotoyXCWbAZzYEADqbsc8JZQwhmEEfXs/qr8rmb6xxjXHBLiqugUIZghkAMQ4iQMqocOaBBMMIZgAA9XhwUV+VtxhoQjAD2EOVA4Cnw0AXFQJRhTJQhI/LBz5z6GYVh5H5zGe47e2SmyvWQb5wY1aPSQrACPYTuE/qz3bAF4IZQH1eY+QZ+gvuJygR51VG6MEBjJ3scgAyr4AZdlkDWUww6+v9YuJDB8LBGtoZWPH7Zs5m/Egwg3WuLfYWaFbxGuO/OtYJeM3McGbP51eCGWQJa5ymwvgWyGqqMDYAYgQzqEdY44MAMZb2BFLs49zkUxlrMnn57v3iUMnzqrzGmFrbzB/gXtYKYgQzWMNCD+sJZMAjZq4X1iJuEsx6swjAvszf12g/ALYimME+vOLKM058jVEoAx61Yt2wNvErwQzmsxDDGl5d3Ju+I2Xl2DPO+ZFgVteop8sWgDO4Teulyi2V9QPoLrHOWVu5ysflAx+EO2ZZMbYcdICdvF/su3wjmMFcVW4+7mGTYFepUFZ9vgir8DtzhFIEszM4cMM+qoT5XQ4sq8ppDYVeRqwdby9+H+czvvA7ZrWZrMDudl3H3r59AX2MfKBzykMwFhDMYJ4qNx/Q1YwDjSBGFQ7sc8zYm4UzhhDMzmHSQ33C/P1mhTKAW6wVTCGY1Wfy70kQZmcnBsSdylqVNqS6mXuzWzNeJpidxaTfj4MO/Gv0WmaeQX87PHByTjucYLYHh4a97PzR3TaFnCqHhirlWGWXcp7CGkRlt9YL+zAvEczOY8IDO6v0aWrAHlaefawrPE0wg7EcGmEP5heVeYg6TuItgCpvLrAZwWwfIw8RJjzUUuX1wSrlABhh5zXNWe1Agtm5TPjxutyWGRtUtfMhi/tZg+jA75vxMMFsLw4T3GKMzPP+6asifc9nVccprFLhQY51mYcIZmezcY/T5bbsg7Hxu/crX698r05mjd9u7dRVhfVrd8b66yqEslGMh4MIZvsZvUiY8K/Thv3d08ejglrKjmV+RoWDFjBPtbXMK43cTTCD11RcLB08a9g5pEHaqfPm1HpXNHIvFc64i2C2J7dmfVUKVcbFHzu0Q6VxM8MOfVCJ9uJUnV5h5ECCGR9s5I8b3WY2gvN0m3fGMJeLcfCsbuvBatXbz60ZNwlm+5qx8Znw96veVqPGR/V6znZK/U+p5wk69WWnurCPmQ8WhDN+JZjxnQl/24w2qvyE2Zh4TeW+3YHxxwmujXNrx/1Oe4XRutiUYLY3H0u9nrYBquq4PnWs0z12CQgV7DZG9C0/Esz2J5ytM6tNZvXhyO974ngYUWcbMKcy9u934vo6yq5/Q9QrjVwlmPEbk/6v3ULZDCeNhxV1Pe3Vm2fM6Ieu4/h7vd4ufcZG1z67XHrXbbZdQ9lIxk8zglkPMxcUk37vNvCnFR53Qh3ppeqYdWv/u5/qtGtI4DE+pIt/CGZ9zA5np078mfW2+fa2S/+eOre7+O1DI/RtXfrmNV1uy4QzvhDMepm9uJw08WeH0d3eZf+s8zjoXLfdzOyLLv18qx67PBy41yn9xu+6hDL4h2DGo064PZtdv8RGMCOcdRsHNnt2ssv882Doq9PC9Gi79/81bs34H8Gsn1W/8N3tYP5+6VenFbq018712LnsP9npw1cSfiv7CQf7XftOKKulUnsLZ1wuF8GM13UIM6vKn/6UNH9a4V8zxm+lzZ7f7TZ2d11vZ8yJndpip7JW1v2tBuEMwayx1SFgt43n1BuymeFst7acUd6Km/1uVt8q7DJu7ynnieOvev/dW74T++4R1fu5Gu21qf/SBaCdz4tBxY0mtVhVbIsZ3i/162rDqsurXv/qcrB/u8ybex/ft1IbWGfGOemthpnzhA0IZv0lJ/m1P3iaLkNCtU1g9pioGs47fqjLhyqB+JVyPNI/o8ewg/0aq9ae9Fx8VKVx190ObT1qnlTZF3iAYHaGKk9gVgS1CvX8rOqiuGpM7HpQelSFfu6+Ca/6UKNVP+tWGR7Rud+fsfrhULV9pxNt+5ru+0I7gtk5Kv7B0UplmaH6YrgysDsorfHoJjyjnSqU4VWrA1rFNphl9YPCGWtP9w+hqOKkVxi/GzlPhLONCGYwxy6LYOI29drPe7W9kgfban19zyY8u73uPQi88vtTK8Zu9UP95VJv/FVWLQDru3V2bOsqbzuxkGB2noo3Z51Y/J+T/vnPqtrfFdrzp1unCmV7RsVyVx1/t1RYc9J27btVTh8fo7k124SPyz+XCTrezm26c9lTXm2zU9r8/dvXo35rp1Pa8Jrd6757+V9xct3v4Vb5r5FlF3Y3IJidbefFqpoObdmhDqtoqzXuaWd9sa8T++7EOj9CKPuXcHYQwYzVf4i6m27t16kus2gj0jqNwU514TVCA8cTzPjQLWCs0LW9utZrhNFto61/9kjbnNSOHevasU7XnFLPKjq1t1uzQwhmfNdpIZvlhBB7Qh0foT3q694/3cdg97p1rt8IXmG8TTg7gGDGNR0XtFFOa5vT6nuNNljv2Tbv2ldd6/Vdx3p2rNNoQsL9hLPmBDN+4gnfVye3x+l17/Az7tGlHFXqMUq3+tzSqb6d6rIT7c62BDNuebs4mJ9a9+9OaovVdU2369u3/00Z9fPT9RjhpPn23e513738K3mF8XFuzRoTzHjESZvNSXV9VOe2Sdatys+tUo4R32/XcbpruUfbsR12LHOKUPA84ayp/9IFYEufF4ROE9qG+piP9uowBk7t+5/q/XZZ268z23+ncXrqOPzNLv2n7/L0AdsTzHjVLpvmTyzkr9t1DFTs+1Vtee8fbq5QjpE/q+oYrTgWq6m6zui72076Xd2VRq1pJ7ZdWW/v79XWOJqoPLAsQmtUHAM79f2M9num/rP6Md0X6fG5sv7f6/rIgS7dT79J9eHqNnm2nlVed/utHNe+78f4vFX+j39beYyuMqt/WEwwY5XkQLPo1HDKIWq0Kk9Eq5RjhlVjs2r9O+h0uwscSjAjbeQAtHHuR/8/5pH2mtkeVcoxU+cgeoJX+0/fAcsJZgAAAGE+Lh8AACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACBPMAAAAwgQzAACAMMEMAAAgTDADAAAIE8wAAADCBDMAAIAwwQwAACBMMAMAAAgTzAAAAMIEMwAAgDDBDAAAIEwwAwAACPt/ve5ROZpD7m0AAAAASUVORK5CYII=';
+
+var CAMPAIGNS = {
+  'red-solo': {
+    badge: '🔴 Red Retinol Wash Peel',
+    title: 'Have a question?', titleEm: "We've got you covered.",
+    desc: "A powerful retinol wash peel that visibly resurfaces skin and minimizes pores — your go-to for a smoother, more radiant complexion.",
+    primary: '#C8102E', bg: '#fff0f2',
+    videoCount: 'This campaign requires <strong>1 video</strong>.',
+    showReviewEvent: false, showChallenge: false, showBundle: false, showChips: false, showReviewEventFaq: false
+  },
+  'red-bundle': {
+    badge: '🔴🧴 Red Retinol + Cream Bundle',
+    title: 'Have a question?', titleEm: "We've got you covered.",
+    desc: "The ultimate retinol duo — pair the Wash Peel with our signature cream for a full skin-renewal routine that delivers visible results.",
+    primary: '#C8102E', bg: '#fff0f2',
+    videoCount: 'This campaign requires <strong>1 Talking Content video</strong> featuring both products.',
+    showReviewEvent: false, showChallenge: false, showBundle: true, showChips: false, showReviewEventFaq: false
+  },
+  'red-challenge': {
+    badge: '🏆 $600 Challenge',
+    title: 'Ready to earn', titleEm: 'up to $600?',
+    desc: "Create up to 30 videos at your own pace and earn $20 per video — the more you create, the more you earn.",
+    primary: '#C8102E', bg: '#fff0f2',
+    videoCount: 'You can create up to <strong>30 videos</strong> at <strong>$20 each</strong> — maximum $600 total.',
+    showReviewEvent: false, showChallenge: true, showBundle: false, showChips: false, showReviewEventFaq: false
+  },
+  'mint-choco': {
+    badge: '🌿🍫 Mint Choco Cleanser',
+    title: 'Something fresh', titleEm: 'is coming.',
+    desc: "A refreshing mint-chocolate cleanser that gently removes impurities while leaving skin feeling cool, clean, and lightly scented.",
+    primary: '#3DBFB8', bg: '#f0fdfb',
+    videoCount: 'This campaign requires <strong>1 video</strong>.',
+    showReviewEvent: false, showChallenge: false, showBundle: false, showChips: true, showReviewEventFaq: false
+  },
+  'review-event': {
+    badge: '⭐ Review Event',
+    title: 'Earn $40', titleEm: 'per product reviewed.',
+    desc: "Purchase on TikTok Shop, leave a review, and get paid. Simple as that.",
+    primary: '#F59E0B', bg: '#fffbeb',
+    videoCount: '',
+    showReviewEvent: false, showChallenge: false, showBundle: false, showChips: false, showReviewEventFaq: true
+  }
+};
+
+document.getElementById('logoImg').src = 'data:image/png;base64,' + LOGO_B64;
+
+function selectCampaign(key) {
+  var c = CAMPAIGNS[key];
+  if (!c) return;
+
+  // Apply colors
+  document.documentElement.style.setProperty('--primary', c.primary);
+  document.body.style.background = c.bg;
+
+  // Swap header content
+  document.getElementById('header-selector').style.display = 'none';
+  document.getElementById('header-faq').style.display = 'block';
+  document.getElementById('campaignBadge').textContent = c.badge;
+  document.getElementById('headerTitle').innerHTML = c.title + '<br><em>' + c.titleEm + '</em>';
+  document.getElementById('headerDesc').textContent = c.desc;
+
+  // Dynamic answers
+  var videoCountEl = document.getElementById('a-video-count');
+  if (videoCountEl) videoCountEl.innerHTML = c.videoCount;
+
+  // Conditional FAQs
+  var toggleHidden = function(id, show) {
+    var el = document.getElementById(id);
+    if (el) { if (show) { el.classList.remove('hidden'); } else { el.classList.add('hidden'); } }
+  };
+  toggleHidden('faq-review-event', c.showReviewEvent);
+  toggleHidden('faq-challenge-info', c.showChallenge);
+  toggleHidden('faq-bundle-info', c.showBundle);
+  toggleHidden('faq-review-event-how', c.showReviewEventFaq);
+
+  // Show/hide tabs based on campaign type
+  var tabsEl = document.querySelector('.tabs');
+  var campaignTab = document.querySelector('[onclick*="\'campaign\'"]');
+  var deliverablesTab = document.querySelector('[onclick*="deliverables"]');
+  var shippingTab = document.querySelector('[onclick*="shipping"]');
+  var paymentTab = document.querySelector('[onclick*="payment"]');
+  var othersTab = document.querySelector('[onclick*="others"]');
+  var panelDeliverables = document.getElementById('panel-deliverables');
+  var panelShipping = document.getElementById('panel-shipping');
+  var footerEl = document.querySelector('#screen-faq .footer');
+
+  var reviewOnlyHide = ['faq-paid-collab', 'faq-timeline', 'faq-product-details'];
+  reviewOnlyHide.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = c.showReviewEventFaq ? 'none' : '';
+  });
+
+  if (c.showReviewEventFaq) {
+    // Review Event: hide all tabs, show flow directly
+    if (tabsEl) tabsEl.style.display = 'none';
+    if (footerEl) footerEl.style.display = 'none';
+    var panelCampaign = document.getElementById('panel-campaign');
+    if (panelCampaign) { panelCampaign.classList.add('active'); panelCampaign.style.display = 'block'; }
+  } else {
+    if (tabsEl) tabsEl.style.display = '';
+    if (footerEl) footerEl.style.display = '';
+    if (deliverablesTab) deliverablesTab.style.display = '';
+    if (shippingTab) shippingTab.style.display = '';
+    if (paymentTab) paymentTab.style.display = '';
+    if (othersTab) othersTab.style.display = 'none';
+    if (panelDeliverables) panelDeliverables.style.display = '';
+    if (panelShipping) panelShipping.style.display = '';
+  }
+
+  // Choco chips
+  var chips = document.querySelectorAll('.choco-chip');
+  for (var i = 0; i < chips.length; i++) {
+    chips[i].style.opacity = c.showChips ? '1' : '0';
+  }
+
+  // Switch screens
+  document.getElementById('screen-selector').classList.remove('active');
+  document.getElementById('screen-faq').classList.add('active');
+
+  // Reset to first tab
+  switchTab('campaign', document.querySelector('.tab'));
+}
+
+function goBack() {
+  document.getElementById('screen-faq').classList.remove('active');
+  document.getElementById('screen-selector').classList.add('active');
+  document.getElementById('header-selector').style.display = 'block';
+  document.getElementById('header-faq').style.display = 'none';
+  document.documentElement.style.setProperty('--primary', '#111111');
+  document.body.style.background = '#f5f5f5';
+  var chips = document.querySelectorAll('.choco-chip');
+  for (var i = 0; i < chips.length; i++) { chips[i].style.opacity = '0'; }
+}
+
+function switchTab(id, btn) {
+  var tabs = document.querySelectorAll('.tab');
+  var panels = document.querySelectorAll('.panel');
+  for (var i = 0; i < tabs.length; i++) { tabs[i].classList.remove('active'); }
+  for (var i = 0; i < panels.length; i++) { panels[i].classList.remove('active'); }
+  btn.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+  var openQs = document.querySelectorAll('.faq-q.open');
+  for (var i = 0; i < openQs.length; i++) {
+    openQs[i].classList.remove('open');
+    openQs[i].nextElementSibling.classList.remove('open');
+  }
+}
+
+function toggle(btn) {
+  var ans = btn.nextElementSibling;
+  var isOpen = ans.classList.contains('open');
+  var panel = btn.closest('.panel');
+  var openQs = panel.querySelectorAll('.faq-q.open');
+  for (var i = 0; i < openQs.length; i++) {
+    openQs[i].classList.remove('open');
+    openQs[i].nextElementSibling.classList.remove('open');
+  }
+  if (!isOpen) { btn.classList.add('open'); ans.classList.add('open'); }
+}
+</script>
+</body>
+</html>
